@@ -1,17 +1,13 @@
 class Show < ActiveRecord::Base
 
 def self.highest_rating
-
- Show.maximum(:rating)
-
+  Show.maximum(:rating)
 end
+
 def self.most_popular_show
 	 hig = self.highest_rating
-  Show.all.each do |x|
-   if x.rating == hig
-  	return x
-  end
- end
+  Show.where("rating > ?", hig)
+ 
 end
 
 def self.lowest_rating
