@@ -6,8 +6,11 @@ end
 
 def self.most_popular_show
 	 hig = self.highest_rating
-  Show.where("rating > ?", hig)
- 
+  Show.all.each do |x|
+   if x.rating == hig
+  	return x
+  end
+ end
 end
 
 def self.lowest_rating
